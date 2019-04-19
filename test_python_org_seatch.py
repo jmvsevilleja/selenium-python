@@ -7,7 +7,7 @@ import chromedriver_install as cdi
 class PythonOrgSearch(unittest.TestCase):
 
     def setUp(self):
-        path = cdi.install(file_directory='./lib/', verbose=True,
+        path = cdi.install(file_directory='./lib/', verbose=False,
                            chmod=True, overwrite=False, version=None)
         self.driver = webdriver.Chrome(path)
 
@@ -21,7 +21,7 @@ class PythonOrgSearch(unittest.TestCase):
         assert "No results found." not in driver.page_source
 
     def tearDown(self):
-        self.driver.close()
+        self.driver.quit()
 
 
 if __name__ == "__main__":

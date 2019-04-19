@@ -9,7 +9,7 @@ import chromedriver_install as cdi
 #cdd = GeckoDriverDownloader()
 # cdd.download_and_install()
 
-path = cdi.install(file_directory='./lib/', verbose=True,
+path = cdi.install(file_directory='./lib/', verbose=False,
                    chmod=True, overwrite=False, version=None)
 
 driver = webdriver.Chrome(path)
@@ -20,6 +20,8 @@ assert "Python" in driver.title
 elem = driver.find_element_by_name("q")
 elem.clear()
 elem.send_keys("pycon")
+elem.send_keys(" and some", Keys.ARROW_DOWN)
 elem.send_keys(Keys.RETURN)
 assert "No results found." not in driver.page_source
-driver.close()
+
+driver.quit()
